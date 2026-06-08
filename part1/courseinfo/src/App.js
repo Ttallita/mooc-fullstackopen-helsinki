@@ -1,9 +1,9 @@
 const App = () => {
 
   const exercises = [
-    { part: 'Fundamentos da biblioteca React', exercise: 10 },
-    { part: 'Usando props para passar dados', exercise: 7 },
-    { part: 'Estado de um componente', exercise: 14 },
+    { name: 'Fundamentos da biblioteca React', quant: 10 },
+    { name: 'Usando props para passar dados', quant: 7 },
+    { name: 'Estado de um componente', quant: 14 },
   ]
 
   const course = 'Desenvolvimento de aplicação Half Stack'
@@ -19,7 +19,7 @@ const App = () => {
     console.log(props)
     return (
       <p>
-        {exercises[0].part} {exercises[0].exercise}
+        {props.name} {props.quant}
       </p>
     )
   }
@@ -28,9 +28,9 @@ const App = () => {
     console.log(exercises)
     return (
       <>
-        <Part part={exercises[0].part} quant={exercises[0].part} />
-        <Part part={exercises[1].part} quant={exercises[1].part} />
-        <Part part={exercises[2].part} quant={exercises[2].part} />
+        <Part name={exercises[0].name} quant={exercises[0].quant} />
+        <Part name={exercises[1].name} quant={exercises[1].quant} />
+        <Part name={exercises[2].name} quant={exercises[2].quant} />
       </>
     )
   }
@@ -38,7 +38,7 @@ const App = () => {
   const Total = () => {
     console.log(exercises)
     return (
-      <p>Number of exercises {exercises[0].exercise + exercises[1].exercise + exercises[2].exercise}</p>
+      <p>Number of exercises {exercises[0].quant + exercises[1].quant + exercises[2].quant}</p>
     )
   }
 
