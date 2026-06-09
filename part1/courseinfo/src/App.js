@@ -1,12 +1,22 @@
 const App = () => {
 
-  const exercises = [
-    { name: 'Fundamentos da biblioteca React', quant: 10 },
-    { name: 'Usando props para passar dados', quant: 7 },
-    { name: 'Estado de um componente', quant: 14 },
-  ]
-
-  const course = 'Desenvolvimento de aplicação Half Stack'
+  const course = {
+    name: 'Desenvolvimento de aplicação Half Stack',
+    parts: [
+      {
+        name: 'Fundamentos da biblioteca React',
+        exercises: 10
+      },
+      {
+        name: 'Usando props para passar dados',
+        exercises: 7
+      },
+      {
+        name: 'Estado de um componente',
+        exercises: 14
+      }
+    ]
+  }
 
   const Header = (props) => {
     console.log(props)
@@ -19,34 +29,34 @@ const App = () => {
     console.log(props)
     return (
       <p>
-        {props.name} {props.quant}
+        {props.part.name} {props.part.exercises}
       </p>
     )
   }
 
-  const Content = () => {
-    console.log(exercises)
+  const Content = (props) => {
+    console.log(props)
     return (
       <>
-        <Part name={exercises[0].name} quant={exercises[0].quant} />
-        <Part name={exercises[1].name} quant={exercises[1].quant} />
-        <Part name={exercises[2].name} quant={exercises[2].quant} />
+        <Part part={props.parts[0]} />
+        <Part part={props.parts[1]} />
+        <Part part={props.parts[2]} />
       </>
     )
   }
 
-  const Total = () => {
-    console.log(exercises)
+  const Total = (props) => {
+    console.log(props)
     return (
-      <p>Number of exercises {exercises[0].quant + exercises[1].quant + exercises[2].quant}</p>
+      <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
     )
   }
 
   return (
     <div>
-      <Header course={course} />
-      <Content />
-      <Total />
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
