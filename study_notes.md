@@ -1,6 +1,6 @@
 > My personal notes from this course.
 
-# Part 1
+# Part 1 - Introdução ao React
 
 ## Introdução à biblioteca React
 
@@ -145,3 +145,7 @@ Isso torna impossível para o React otimizar o componente.
 
 - https://reactjs.org/docs/hello-world.html
 - https://egghead.io/courses/the-beginner-s-guide-to-react
+
+# Part 2 - Comunicação com o servidor
+
+## Renderização de uma coleção e módulos
