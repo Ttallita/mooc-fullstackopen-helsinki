@@ -1,4 +1,4 @@
-# Exercícios do MOOC Full Stack da Universidade de Helsinki
+# Exercícios do MOOC de Full Stack da Universidade de Helsinki
 
 ### Tecnologias abordadas:
 - ReactJS,
