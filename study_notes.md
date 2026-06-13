@@ -149,3 +149,9 @@ Isso torna impossível para o React otimizar o componente.
 # Part 2 - Comunicação com o servidor
 
 ## Renderização de uma coleção e módulos
+
+...
+
+## Formulários
+
+**Equality comparisons and sameness:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness
