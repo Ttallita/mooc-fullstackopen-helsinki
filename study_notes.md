@@ -155,3 +155,33 @@ Isso torna impossível para o React otimizar o componente.
 ## Formulários
 
 **Equality comparisons and sameness:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness
+
+## Obtendo dados do servidor
+
+> Atualmente, os motores JavaScript são single-threaded (linha de execução única), o que significa que não podem executar código em paralelo. Como resultado, na prática, é uma exigência usar um modelo não-bloqueante para a execução de operações IO. Caso contrário, o navegador "congelaria" durante a busca de dados em um servidor, por exemplo.
+
+[What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+> É possível executar código paralelizado nos navegadores de hoje em dia com a ajuda dos chamados web workers. No entanto, o loop de eventos de uma única janela do navegador ainda é realizado como single thread.
+
+### Axios e promessas (promises)
+
+Uma promessa pode ter três estados distintos:
+1. A promessa está pendente (pending): significa que o valor final (uma das operações seguintes) ainda não está disponível.
+2. A promessa está realizada (fulfilled): significa que a operação foi concluída e o valor final está disponível, o que geralmente é uma operação bem-sucedida. Este estado às vezes também é chamado de resolvido(a) (resolved).
+3. A promessa está rejeitada (rejected): significa que um erro impediu que o valor final fosse determinado, o que geralmente representa uma operação falha.
+
+### Effect-hooks
+
+> O Effect Hook (Hook de Efeito) te permite executar efeitos colaterais em componentes funcionais > Buscar dados, configurar uma subscription (assinatura), e mudar o DOM manualmente dentro dos componentes React são exemplos de efeitos colaterais.
+
+> Por padrão, useEffect roda depois da primeira renderização e depois de toda atualização, mas é possível escolher rodá-lo somente quando determinados valores tenham mudado.
+
+## Alterando dados no servidor
+
+> ... o método then de uma promessa também retorna uma promessa.
+
+[Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+[Promises chaining](https://javascript.info/promise-chaining)
+[You Don't Know JS: Async & Performance](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md)
+
