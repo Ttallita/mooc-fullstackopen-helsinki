@@ -70,7 +70,7 @@ const App = () => {
           let newPersonsToShow = persons.filter(person => person.id !== idPersonToUpdate);
           setPersons(newPersonsToShow)
           setPersonsToShow(newPersonsToShow)
-          showMessage({ content: `Não foi possível atualizar o usuário ${newName} pois ele foi removido`, isSuccess: false })
+          showMessage({ content: `Não foi possível atualizar o registro da pessoa ${newName} pois ele foi removido`, isSuccess: false })
         })
 
       return
