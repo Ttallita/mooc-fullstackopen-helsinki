@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
+
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
+import Notification from './components/Notification'
+
 import personsService from './services/persons'
+
 import axios from 'axios'
 
 const App = () => {
@@ -11,7 +15,9 @@ const App = () => {
   const [personsToShow, setPersonsToShow] = useState(persons)
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+
   const [filter, setFilter] = useState('')
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     personsService
@@ -21,6 +27,18 @@ const App = () => {
         setPersonsToShow(initialPersons)
       })
   }, [])
+
+  const showMessage = (message) => {
+    setMessage(message)
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+  }
+
+  const cleanForm = () => {
+    setNewName('')
+    setNewNumber('')
+  }
 
   const addName = (event) => {
     event.preventDefault()
@@ -32,8 +50,7 @@ const App = () => {
 
     if (persons.some(person => person.name === newName)) {
       if (!window.confirm(`Deseja atualizar número da pessoa ${newName}?`)) {
-        setNewName('')
-        setNewNumber('')
+        cleanForm()
         return
       }
 
@@ -45,8 +62,15 @@ const App = () => {
           let newPersonsToShow = persons.map(person => person.name !== newName ? person : returnedPerson);
           setPersons(newPersonsToShow)
           setPersonsToShow(newPersonsToShow)
-          setNewName('')
-          setNewNumber('')
+          cleanForm()
+
+          showMessage({ content: `Número da pessoa com nome ${newName} foi atualizado com sucesso`, isSuccess: true })
+        })
+        .catch((error) => {
+          let newPersonsToShow = persons.filter(person => person.id !== idPersonToUpdate);
+          setPersons(newPersonsToShow)
+          setPersonsToShow(newPersonsToShow)
+          showMessage({ content: `Não foi possível atualizar o usuário ${newName} pois ele foi removido`, isSuccess: false })
         })
 
       return
@@ -58,21 +82,29 @@ const App = () => {
         let newPersonsToShow = persons.concat(returnedPerson)
         setPersons(newPersonsToShow)
         setPersonsToShow(newPersonsToShow)
-        setNewName('')
-        setNewNumber('')
+        cleanForm()
+
+        showMessage({ content: `Nova pessoa com nome ${newName} foi inserida com sucesso`, isSuccess: true })
       })
   }
 
-  const deletePerson = (id) => {
+  const deletePerson = (personToDelete) => {
     if (!window.confirm('Deletar pessoa?'))
       return
 
     personsService
-      .deletePerson(id)
+      .deletePerson(personToDelete.id)
       .then((personDeleted) => {
         let newPersonsToShow = persons.filter(person => person.id !== personDeleted.id);
         setPersons(newPersonsToShow)
         setPersonsToShow(newPersonsToShow)
+        showMessage({ content: `Registro de ${personToDelete.name} foi deletado com sucesso`, isSuccess: true })
+      })
+      .catch((error) => {
+        let newPersonsToShow = persons.filter(person => person.id !== personToDelete.id);
+        setPersons(newPersonsToShow)
+        setPersonsToShow(newPersonsToShow)
+        showMessage({ content: `Registro de ${personToDelete.name} já tinha sido deletado anteriormente`, isSuccess: false })
       })
   }
 
@@ -97,6 +129,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+
+      <Notification message={message} />
 
       <Filter value={filter} onChange={handleFilterChange} />
 

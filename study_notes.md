@@ -182,6 +182,35 @@ Uma promessa pode ter três estados distintos:
 > ... o método then de uma promessa também retorna uma promessa.
 
 [Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+
 [Promises chaining](https://javascript.info/promise-chaining)
+
 [You Don't Know JS: Async & Performance](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md)
 
+## Adicionando estilos à aplicação React
+
+CSS:
+
+```css
+{
+  color: green;
+  font-style: italic;
+  font-size: 16px;
+}
+```
+
+Objeto de estilo inline React:
+
+```css
+{
+  color: 'green',
+  fontStyle: 'italic',
+  fontSize: 16
+}
+```
+
+> Estilos inline possuem certas limitações. Por exemplo, não é possível usar as chamadas pseudo-classes diretamente neles.
+
+> Como a separação de CSS, HTML e JavaScript em arquivos separados não parecia ter escalabilidade em aplicativos maiores, o React baseia a divisão do aplicativo ao longo das linhas de suas entidades funcionais lógicas.
+
+> As unidades estruturais que compõem as entidades funcionais da aplicação são os componentes React. Um componente React define o HTML para estruturar o conteúdo, as funções JavaScript para determinar a funcionalidade e também o estilo do componente; tudo em um só lugar. Isso é para criar componentes individuais que sejam o mais independentes e reutilizáveis possível.
