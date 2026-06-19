@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 import countriesService from "./services/countries";
-import Countries from "./components/Countries";
 
-import axios from 'axios'
+import Countries from "./components/Countries";
 import AlertMessage from "./components/AlertMessage";
 
 function App() {
 
+  const [weathers, setWeathers] = useState([])
   const [countries, setCountries] = useState([])
   const [countriesToShow, setCountriesToShow] = useState([])
 
@@ -23,6 +23,10 @@ function App() {
 
   }, [])
 
+  const showCountry = (country) => {
+    setCountriesToShow([country])
+  }
+
   const handleFilterChange = (event) => {
     setFilter(event.target.value)
 
@@ -37,7 +41,7 @@ function App() {
     })
 
     if (contriesFiltered.length === 0){
-      setAlertMessage('No countries founded')
+      setAlertMessage('No countries found')
       setCountriesToShow(null)
       return
     }
@@ -56,7 +60,7 @@ function App() {
     <div>
       <input value={filter} onChange={handleFilterChange} />
       <AlertMessage message={alertMessage}/>
-      <Countries value={countriesToShow} />
+      <Countries countries={countriesToShow} onClickCountry={showCountry} />
     </div>
   );
 }
